@@ -1,0 +1,170 @@
+<html>
+<head>
+<script type="text/javascript">
+var schemeSel;
+function radioButton(schemes) {
+    schemeSel = schemes;
+}
+
+function calcResult() {
+    var duration = document.getElementsByName("duration")[0].value;
+    var costpermonth;
+    if (schemeSel === "scheme1") {
+        costpermonth = 200;
+    } else if (schemeSel === "scheme2") {
+        costpermonth = 350;
+    } else {
+        costpermonth = 500;
+    }
+
+    var monthlyrental;
+    var contype = document.getElementById("connectiontype").value;
+
+    if (contype === "Pre") {
+        monthlyrental = 75;
+    } else {
+        monthlyrental = 150;
+    }
+    var result = (duration * costpermonth) + monthlyrental;
+    var out = document.getElementsByName("result");
+    out[0].innerHTML = "The Total Monthly Rental Cost is Rs. " + result;
+}
+</script>
+<style>
+h1{
+	color:#006666;
+	font-family:verdana;
+	text-align:center;
+}
+
+body{
+	background-color:#EED426;
+
+}
+
+label{
+	font-weight:bold;
+}
+
+input[class="btn"]{
+	font-weight:bold;
+}
+
+div{
+	font-weight:bold;
+	text-align:center
+
+}
+
+table[id="rentalcost"],[id="rentalcost"] th,[id="rentalcost"] td{
+ 
+	border: 1px solid;
+	text-align:center	
+}
+
+table{
+    margin-right:auto;
+    margin-left:auto;
+}
+
+
+
+</style>
+</head>
+<body>
+	<h1>ACTB Connection Portal</h1>
+<form>
+	<table>
+	<tr>
+		<td>
+		<label name="Customer Name">Customer Name</label>
+		</td>
+		<td>
+		<input type="text" name="custname" placeholder="Enter the customer name" pattern="^[a-zA-z]+([\s][a-zA-Z]+)*$" required>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<label name="Customer Email">Customer Email</label>
+		</td>
+		<td>
+		<input type="email" name="email" placeholder="abc@gmail.com" required>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<label name="Telephone/Mobile Number">Telephone/Mobile Number</label>
+		</td>
+		<td>
+		<input type="text" name="mobile" placeholder="Enter the Mobile Number" pattern="[7-9]{1}[0-9]{9}" required>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<label name="Connection Type">Connection Type</label>
+		</td>
+		<td>
+		<select name="conntype" id="connectiontype" required>
+			<option value="Pre" id="Pre">Pre</option>
+			<option value="Post" id="Post">Post</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<label name="Scheme Name">Scheme Name</label>
+		</td>
+		<td>
+		<input type="radio" id="scheme1" name="scheme" value="scheme1" onclick="radioButton(this.value)" required><b>Local</b>
+		<input type="radio" id="scheme2" name="scheme" value="scheme2" onclick="radioButton(this.value)" ><b>STD</b>
+		<input type="radio" id="scheme3" name="scheme" value="scheme3" onclick="radioButton(this.value)"><b>FullTalkTime</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<label name="Connection Duration">Connection Duration</label>
+		</td>
+		<td>
+		<input type="number" id="duration" name="duration" min="1" max="12" required>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+		<input type="button" onclick="calcResult()" class="btn" name="submit" id="submit" value="Calculate Bill Amount">
+		</td>
+		<td>
+		<input type="button" class="btn" name="clear" value="Reset">
+		</td>
+	</tr>
+	<tr>
+	<td>
+		<div name="result" id="result"></div>
+	</td>
+	</tr>
+	</table>
+</form>
+ <div>Rental Cost</div> 
+<table id="rentalcost">
+   	  
+	<tr>
+		<th>Connection Type</th>
+		<th>Call Limit</th>
+		<th>Monthly Rental</th>
+	</tr>
+
+	<tr>
+		<td>Pre</td>
+		<td>500</td>
+		<td>75</td>
+	</tr>
+
+	<tr>
+		<td>Post</td>
+		<td>Unlimited</td>
+		<td>150</td>
+	</tr>
+
+</table>	
+</body>
+</html>
